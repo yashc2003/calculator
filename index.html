@@ -2,66 +2,7 @@
 <html>
 <head>
     <title>calculater using html,css</title>
-    <style>
-    .calculator {
-      width: 300px;
-      height: 450px;
-      background-color: #6D7B8d;
-      margin: 100px auto;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 20px 20px 20px #aaa;
-      border-bottom: 5px;
-    }
-     .small-screen-contener
-   {
-     display: flex;
-     justify-content:end;
-     margin-right: 20px;
-   }
-   .small-screen {
-     height: 30px;
-     width: 30px;
-     background-color: #423839;
-     border: 1px solid;
-  }
-    .screen {
-      width: 92%;
-      height: 70px;
-      background-color: #423839;
-      color: #ffffff;
-      font-size: 30px;
-      text-align: right;
-      padding-right: 20px;
-      border: none;
-      border-radius: 5px;
-      margin-bottom: 15px;
-      margin-top: 20px;
-    }
-
-    .buttons-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-gap: 10px;
-      margin-top: 20px
-    }
-
-    button{
-      width: 100%;
-      height: 50px;
-      font-size: 30px;
-      color:  #D2FFE6;
-      background-color: #000000;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-    }
-    .button-row:hover{
-      font-size: 45px;
-      box-shadow: 0 0 1px 0.5px ;
-      transition: 2s;
-    }
-    </style>
+    <link href="style.css" rel="stylesheet"/>
 </head>
 <body>
     <div class="calculator">
@@ -70,32 +11,47 @@
         <div class="small-screen"></div>
         <div class="small-screen"></div>
       </div>
-  <input type="text" class="screen">
+  <input type="text" class="screen" id="input">
   <div class="buttons-row">
-    <button class="cal-button">1</button>
-    <button class="cal-button">2</button>
-    <button class="cal-button">3</button>
-    <button class="cal-button">+</button>
+    <button class="cal-button" onclick="handleKeyPress('1')">1</button>
+    <button class="cal-button" onclick="handleKeyPress('2')">2</button>
+    <button class="cal-button" onclick="handleKeyPress('3')">3</button>
+    <button class="cal-button" onclick="calculate('=')">=</button>
   </div>
   <div class="buttons-row">
-    <button class="cal-button">4</button>
-    <button class="cal-button">5</button>
-    <button class="cal-button">6</button>
-    <button class="cal-button">-</button>
+    <button class="cal-button" onclick="handleKeyPress('4')">4</button>
+    <button class="cal-button" onclick="handleKeyPress('5')">5</button>
+    <button class="cal-button" onclick="handleKeyPress('6')">6</button>
+    <button class="cal-button" onclick="handleKeyPress('+')">+</button>
   </div>
   <div class="buttons-row">
-    <button class="cal-button">7</button>
-    <button class="cal-button">8</button>
-    <button class="cal-button">9</button>
-    <button class="cal-button">x</button>
+    <button class="cal-button" onclick="handleKeyPress('7')">7</button>
+    <button class="cal-button" onclick="handleKeyPress('8')">8</button>
+    <button class="cal-button" onclick="handleKeyPress('9')">9</button>
+    <button class="cal-button" onclick="handleKeyPress('-')">-</button>
   </div>
 <div class="buttons-row">
-    <button class="cal-button">0</button>
-    <button class="cal-button">.</button>
-    <button class="cal-button">=</button>
-    <button class="cal-button">/</button>
+    <button class="cal-button" onclick="handleKeyPress('0')">0</button>
+    <button class="cal-button" onclick="handleKeyPress('.')">.</button>
+    <button class="cal-button" onclick="handleKeyPress('*')">*</button>
+    <button class="cal-button" onclick="handleKeyPress('/')">/</button>
+    <button class="cal-button" onclick="clearScreen()">C</button>
   </div>
 </div>
 </div>
+<script>
+  function handleKeyPress(key) {
+  const inputScreen = document.getElementById('input');
+  inputScreen.value = inputScreen.value + (key);
+  }
+  function calculate(){
+    const inputScreen = document.getElementById('input');
+    inputScreen.value = eval(inputScreen.value);
+   }
+   function clearScreen() {
+    const inputScreen = document.getElementById('input');
+    inputScreen.value = ''; 
+     }
+</script>
 </body>
 </html>
